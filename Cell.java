@@ -1,29 +1,18 @@
-enum States { EMPTY, CROSS, NOUGHT }
-
 public class Cell
 {
-    private States state;
+    private String state;
 
     public Cell()
     {
-        state = States.EMPTY;
+        state = " ";
     }
 
-    public void setState(States state) {
+    public void setState(String state)
+    {
         this.state = state;
     }
 
-    public String getState()
-    {
-        if (state == States.CROSS)
-        {
-            return "X";
-        }
-        else if (state == States.NOUGHT)
-        {
-            return "O";
-        }
-        return " ";
-
+    public String getState() {
+        return state;
     }
 }

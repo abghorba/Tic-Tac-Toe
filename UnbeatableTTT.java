@@ -9,18 +9,21 @@ public class UnbeatableTTT
         String winner = "";
         boolean keepPlaying = true;
 
-
-        GameBoard board = new GameBoard();
-        Player player = new Player(board, "X");
-        Computer computer = new Computer(board, "O");
-
         Scanner in = new Scanner(System.in);
+        GameBoard board = new GameBoard();
+
+        System.out.println("Do you want to be X or O? (X/O)");
+        String playerMark = in.next();
+        Player player = new Player(board, playerMark);
+        Computer computer = new Computer(board, player.opponentState);
+
 
         board.printGameBoard();
 
         while(keepPlaying) {
+            // Determine if game is over and determine the winner, if there is one.
             if(board.isGameOver()) {
-                if (board.isAWin())
+                if (board.hasWon(player.playerState) || board.hasWon(computer.playerState))
                     System.out.println("The winner is: " + winner);
                 else if (board.isADraw())
                     System.out.println("Its a DRAW!");
@@ -44,23 +47,24 @@ public class UnbeatableTTT
             do {
                 row = in.nextInt()-1;
                 col = in.nextInt()-1;
-            } while(!player1.isValidMove(row, col));
-            player1.makeMove(row, col);
+            } while(!player.isValidMove(row, col));
+            player.makeMove(row, col);
             board.moves++;
             board.printGameBoard();
-            if(board.isAWin()) {
-                winner = "Player 1!";
+            if(board.hasWon(player.playerState)) {
+                winner = "Player!";
                 continue;
             }
             else if(board.isADraw())
                 continue;
 
-
             // Computer's turn
+            System.out.println("Computer's turn.");
+            System.out.println("");
             computer.makeMove();
             board.moves++;
             board.printGameBoard();
-            if(board.isAWin()) {
+            if(board.hasWon(computer.playerState)) {
                 winner = "Computer!";
                 continue;
             }

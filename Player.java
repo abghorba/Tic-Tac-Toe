@@ -1,28 +1,25 @@
 public class Player
 {
-    private GameBoard board;
-    private States playerState;
+    protected GameBoard board;
+    protected String playerState;
+    protected String opponentState;
 
-    public Player(GameBoard board, String state)
-    {
+    public Player(GameBoard board, String playerState) {
         this.board = board;
-        if (state == "X")
-        {
-            playerState = States.CROSS;
-        }
-        else if (state == "O")
-        {
-            playerState = States.NOUGHT;
-        }
+        this.playerState = playerState;
+
+        if (playerState.equals("X"))
+            opponentState = "O";
+        else if (playerState.equals("O"))
+            opponentState = "X";
     }
 
-    public boolean isValidMove(int row, int col)
-    {
+    public boolean isValidMove(int row, int col) {
         if (row < 0 || row >= 3 || col < 0 || col >= 3)
         {
             return false;
         }
-        else if(board.isCellEmpty(row,col))
+        else if(board.isCellEmpty(row, col))
         {
             return true;
         }

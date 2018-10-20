@@ -9,17 +9,20 @@ public class TicTacToe
         String winner = "";
         boolean keepPlaying = true;
 
-        GameBoard board = new GameBoard();
-        Player player1 = new Player(board, "X");
-        Player player2 = new Player(board, "O");
-
         Scanner in = new Scanner(System.in);
+        GameBoard board = new GameBoard();
+
+        System.out.println("Player 1: Do you want to be X or O? (X/O)");
+        String player1Mark = in.next();
+        Player player1 = new Player(board, player1Mark);
+        Player player2 = new Player(board, player1.opponentState);
 
         board.printGameBoard();
 
         while(keepPlaying) {
+            // Check if the game is over and determine a winner, if there is one.
             if(board.isGameOver()) {
-                if (board.isAWin())
+                if (board.hasWon(player1.playerState) || board.hasWon(player2.playerState))
                     System.out.println("The winner is: " + winner);
                 else if (board.isADraw())
                     System.out.println("Its a DRAW!");
@@ -27,6 +30,7 @@ public class TicTacToe
                 System.out.print("Do you want to play again? (y/n)");
                 String playAgain = in.next();
                 if (playAgain.equals("y")) {
+                    System.out.println("");
                     board.resetGameBoard();
                     board.printGameBoard();
                     continue;
@@ -47,13 +51,12 @@ public class TicTacToe
             player1.makeMove(row, col);
             board.moves++;
             board.printGameBoard();
-            if(board.isAWin()) {
+            if(board.hasWon(player1.playerState)) {
                 winner = "Player 1";
                 continue;
             }
             else if(board.isADraw())
                 continue;
-
 
             // Player 2's turn
             System.out.print("Player 2 enter the row and column: ");
@@ -64,7 +67,7 @@ public class TicTacToe
             player2.makeMove(row, col);
             board.moves++;
             board.printGameBoard();
-            if(board.isAWin()) {
+            if(board.hasWon(player2.playerState)) {
                 winner = "Player 2";
                 continue;
             }
