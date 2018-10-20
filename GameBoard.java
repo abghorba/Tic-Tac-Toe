@@ -114,6 +114,8 @@ public class GameBoard
             return -100;
         else
             return 0;
+
+        // Should add support for 2 in a row to help computer make better decisions.
     }
 
     public void emptyCell(int row, int col) {
