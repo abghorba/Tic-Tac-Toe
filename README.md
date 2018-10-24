@@ -4,6 +4,7 @@ Example game of Player vs. Player:
 
     Player 1: Do you want to be X or O? (X/O)
     X
+    
       |   |
     ----------
       |   |
@@ -75,6 +76,7 @@ If you run UnbeatableTTT, you play against the computer. Try to beat the compute
 Example game of Player vs. Computer:
     Do you want to be X or O? (X/O)
     X
+    
       |   |
     ----------
       |   |
