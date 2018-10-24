@@ -4,8 +4,6 @@ public class TicTacToe
 {
     public static void main(String args[])
     {
-        int row;
-        int col;
         String winner = "";
         boolean keepPlaying = true;
 
@@ -13,8 +11,8 @@ public class TicTacToe
         GameBoard board = new GameBoard();
 
         System.out.println("Player 1: Do you want to be X or O? (X/O)");
-        String player1Mark = in.next();
-        Player player1 = new Player(board, player1Mark);
+        String mark = in.next();
+        Player player1 = new Player(board, mark);
         Player player2 = new Player(board, player1.opponentState);
 
         board.printGameBoard();
@@ -43,36 +41,19 @@ public class TicTacToe
             }
 
             // Player 1's turn
-            System.out.println("Player 1 enter the row and column: ");
-            do {
-                row = in.nextInt()-1;
-                col = in.nextInt()-1;
-            } while(!player1.isValidMove(row, col));
-            player1.makeMove(row, col);
-            board.moves++;
-            board.printGameBoard();
+            player1.makeMove();
             if(board.hasWon(player1.playerState)) {
-                winner = "Player 1";
+                winner = player1.playerState;
                 continue;
             }
             else if(board.isADraw())
                 continue;
 
             // Player 2's turn
-            System.out.print("Player 2 enter the row and column: ");
-            do {
-                row = in.nextInt()-1;
-                col = in.nextInt()-1;
-            } while(!player2.isValidMove(row, col));
-            player2.makeMove(row, col);
-            board.moves++;
-            board.printGameBoard();
+            player2.makeMove();
             if(board.hasWon(player2.playerState)) {
-                winner = "Player 2";
-                continue;
+                winner = player2.playerState;
             }
-            else if(board.isADraw())
-                continue;
         }
     }
 }

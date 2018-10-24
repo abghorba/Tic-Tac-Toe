@@ -4,8 +4,6 @@ public class UnbeatableTTT
 {
     public static void main(String args[])
     {
-        int row;
-        int col;
         String winner = "";
         boolean keepPlaying = true;
 
@@ -13,8 +11,8 @@ public class UnbeatableTTT
         GameBoard board = new GameBoard();
 
         System.out.println("Do you want to be X or O? (X/O)");
-        String playerMark = in.next();
-        Player player = new Player(board, playerMark);
+        String mark = in.next();
+        Player player = new Player(board, mark);
         Computer computer = new Computer(board, player.opponentState);
 
 
@@ -43,14 +41,7 @@ public class UnbeatableTTT
             }
 
             // Player 1's turn
-            System.out.println("Player 1 enter the row and column: ");
-            do {
-                row = in.nextInt()-1;
-                col = in.nextInt()-1;
-            } while(!player.isValidMove(row, col));
-            player.makeMove(row, col);
-            board.moves++;
-            board.printGameBoard();
+            player.makeMove();
             if(board.hasWon(player.playerState)) {
                 winner = "Player!";
                 continue;
@@ -59,17 +50,10 @@ public class UnbeatableTTT
                 continue;
 
             // Computer's turn
-            System.out.println("Computer's turn.");
-            System.out.println("");
             computer.makeMove();
-            board.moves++;
-            board.printGameBoard();
             if(board.hasWon(computer.playerState)) {
                 winner = "Computer!";
-                continue;
             }
-            else if(board.isADraw())
-                continue;
         }
     }
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameBoard
+class GameBoard
 {
     private final static int ROWS = 3;
     private final static int COLS = 3;
@@ -9,9 +9,12 @@ public class GameBoard
 
     private Cell[][] board;
 
-    public int moves;
+    int moves;
 
-    public GameBoard() {
+    /**
+     * Sets the game board to have all cells with state " ".
+     */
+    GameBoard() {
         board = new Cell[ROWS][COLS];
 
         for(int row = 0; row < ROWS; row++)
@@ -25,7 +28,12 @@ public class GameBoard
         moves = 0;
     }
 
-    public boolean hasWon(String playerState) {
+    /**
+     * Checks if a given player has won the game by getting three in a row.
+     * @param playerState       State of the player you wish to check has won.
+     * @return                  Returns true if there is a win.
+     */
+    boolean hasWon(String playerState) {
         String threeInARow = playerState + playerState + playerState;
         String charsInARow = "";
 
@@ -65,7 +73,11 @@ public class GameBoard
         return false;
     }
 
-    public boolean isADraw() {
+    /**
+     * Checks if there is a draw in the game.
+     * @return                  True if there is a draw.
+     */
+    boolean isADraw() {
         if (moves == MAX_MOVES && !(hasWon("X") || hasWon("O")))
         {
             return true;
@@ -73,7 +85,11 @@ public class GameBoard
         return false;
     }
 
-    public boolean isGameOver() {
+    /**
+     * Checks if the game is over by using hasWon and isADraw methods.
+     * @return                  True if game is over.
+     */
+    boolean isGameOver() {
         if (hasWon("X") || hasWon("O") || isADraw())
         {
             return true;
@@ -81,7 +97,13 @@ public class GameBoard
         return false;
     }
 
-    public boolean isCellEmpty(int row, int col) {
+    /**
+     * Check if a given cell is empty in the board.
+     * @param row               Row of cell in board.
+     * @param col               Column of cell in board.
+     * @return                  True if the cell contains the string " ".
+     */
+    boolean isCellEmpty(int row, int col) {
         if (board[row][col].getState().equals(" "))
         {
             return true;
@@ -89,8 +111,16 @@ public class GameBoard
         return false;
     }
 
-    public List<int[]> possibleMoves() {
+    /**
+     * Gives a list of possible moves that can be made.
+     * @return                  Returns a list of integer arrays of possible moves in format {row, column}.
+     */
+    List<int[]> possibleMoves() {
         List<int[]> availableMoves = new ArrayList<int[]>();
+
+        // If there is a winner, there can be no more moves
+        if (hasWon("X") || hasWon("O"))
+            return availableMoves;
 
         for (int row = 0; row < ROWS; row++)
         {
@@ -106,26 +136,41 @@ public class GameBoard
         return availableMoves;
     }
 
-    public int evaluateBoard(String playerState, String opponentState) {
+    /**
+     * Chosen heuristic evaluation of the board.
+     * @param playerState       Maximizing player.
+     * @param opponentState     Minimizing player.
+     * @param depth             Number of moves until a win is found.
+     * @return                  Returns an integer that stands for the board's evaluation score.
+     */
+    int evaluateBoard(String playerState, String opponentState, int depth) {
         // Check if either player wins
         if(hasWon(playerState))
-            return 100;
+            return 100 - depth;
         else if(hasWon(opponentState))
-            return -100;
-        else
-            return 0;
-
-        // Should add support for 2 in a row to help computer make better decisions.
+            return -100 + depth;
+        return 0;
     }
 
-    public void emptyCell(int row, int col) {
+    /**
+     * Sets the cell's state back to " ".
+     * @param row               Row of cell in board.
+     * @param col               Column of cell in board.
+     */
+    void emptyCell(int row, int col) {
         if (!isCellEmpty(row, col))
         {
             board[row][col].setState(" ");
         }
     }
 
-    public void playerMove(int row, int col, String playerState) {
+    /**
+     * Allows the player to make a valid move on the game board.
+     * @param row               Row of cell on board.
+     * @param col               Column of cell on board.
+     * @param playerState       Player that wishes to make a move.
+     */
+    void playerMove(int row, int col, String playerState) {
         if (isCellEmpty(row, col))
         {
             board[row][col].setState(playerState);
@@ -133,7 +178,10 @@ public class GameBoard
 
     }
 
-    public void printGameBoard() {
+    /**
+     * Prints the current game board.
+     */
+    void printGameBoard() {
         /** Prints out the GameBoard as such:
            |   |
          ----------
@@ -150,7 +198,10 @@ public class GameBoard
         System.out.println("");
     }
 
-    public void resetGameBoard() {
+    /**
+     * Resets the current game board.
+     */
+    void resetGameBoard() {
         moves = 0;
         for(int row = 0; row < ROWS; row++)
         {
