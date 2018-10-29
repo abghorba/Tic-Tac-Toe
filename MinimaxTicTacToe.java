@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class UnbeatableTTT
+public class MinimaxTicTacToe
 {
     public static void main(String args[])
     {
