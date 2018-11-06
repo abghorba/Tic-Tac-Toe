@@ -72,7 +72,7 @@ Example game of Player vs. Player:
 
 
 
-If you run UnbeatableTTT, you play against the computer. Try to beat the computer!
+If you run MinimaxTicTacToe, you play against the computer. Try to beat the computer!
 Example game of Player vs. Computer:
     Do you want to be X or O? (X/O)
     X
