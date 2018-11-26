@@ -71,9 +71,8 @@ Example game of AI.Player vs. AI.Player:
     Do you want to play again? (y/n)
 
 
-
-If you run UnbeatableTTT, you play against the computer. Try to beat the computer!
-Example game of AI.Player vs. Computer:
+If you run MinimaxTicTacToe, you play against the computer. Try to beat the computer!
+Example game of Player vs. Computer:
     Do you want to be X or O? (X/O)
     X
     
