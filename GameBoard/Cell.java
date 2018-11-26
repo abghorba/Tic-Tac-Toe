@@ -1,3 +1,5 @@
+package GameBoard;
+
 class Cell
 {
     private String state;

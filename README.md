@@ -1,8 +1,8 @@
 # Tic-Tac-Toe
 An implementation of Tic-Tac-Toe which is played on the command line.
-Example game of Player vs. Player:
+Example game of AI.Player vs. AI.Player:
 
-    Player 1: Do you want to be X or O? (X/O)
+    AI.Player 1: Do you want to be X or O? (X/O)
     X
     
       |   |
@@ -73,7 +73,7 @@ Example game of Player vs. Player:
 
 
 If you run UnbeatableTTT, you play against the computer. Try to beat the computer!
-Example game of Player vs. Computer:
+Example game of AI.Player vs. Computer:
     Do you want to be X or O? (X/O)
     X
     

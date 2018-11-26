@@ -1,6 +1,11 @@
+package TicTacToe;
+
+import AI.Player;
+import GameBoard.GameBoard;
+
 import java.util.Scanner;
 
-public class MinimaxTicTacToe
+public class TicTacToe
 {
     public static void main(String args[])
     {
@@ -10,18 +15,17 @@ public class MinimaxTicTacToe
         Scanner in = new Scanner(System.in);
         GameBoard board = new GameBoard();
 
-        System.out.println("Do you want to be X or O? (X/O)");
+        System.out.println("AI.Player 1: Do you want to be X or O? (X/O)");
         String mark = in.next();
-        Player player = new Player(board, mark);
-        Computer computer = new Computer(board, player.opponentState);
-
+        Player player1 = new Player(board, mark);
+        Player player2 = new Player(board, player1.opponentState);
 
         board.printGameBoard();
 
         while(keepPlaying) {
-            // Determine if game is over and determine the winner, if there is one.
+            // Check if the game is over and determine a winner, if there is one.
             if(board.isGameOver()) {
-                if (board.hasWon(player.playerState) || board.hasWon(computer.playerState))
+                if (board.hasWon(player1.playerState) || board.hasWon(player2.playerState))
                     System.out.println("The winner is: " + winner);
                 else if (board.isADraw())
                     System.out.println("Its a DRAW!");
@@ -29,6 +33,7 @@ public class MinimaxTicTacToe
                 System.out.print("Do you want to play again? (y/n)");
                 String playAgain = in.next();
                 if (playAgain.equals("y")) {
+                    System.out.println("");
                     board.resetGameBoard();
                     board.printGameBoard();
                     continue;
@@ -40,19 +45,19 @@ public class MinimaxTicTacToe
                 }
             }
 
-            // Player 1's turn
-            player.makeMove();
-            if(board.hasWon(player.playerState)) {
-                winner = "Player!";
+            // AI.Player 1's turn
+            player1.makeMove();
+            if(board.hasWon(player1.playerState)) {
+                winner = player1.playerState;
                 continue;
             }
             else if(board.isADraw())
                 continue;
 
-            // Computer's turn
-            computer.makeMove();
-            if(board.hasWon(computer.playerState)) {
-                winner = "Computer!";
+            // AI.Player 2's turn
+            player2.makeMove();
+            if(board.hasWon(player2.playerState)) {
+                winner = player2.playerState;
             }
         }
     }

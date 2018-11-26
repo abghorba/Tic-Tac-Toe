@@ -1,10 +1,14 @@
+package AI;
+
+import GameBoard.GameBoard;
+
 import java.util.Scanner;
 
 public class Player
 {
-    GameBoard board;
-    String playerState;
-    String opponentState;
+    protected GameBoard board;
+    public String playerState;
+    public String opponentState;
 
     public Player(GameBoard board, String playerState) {
         this.board = board;
@@ -23,7 +27,7 @@ public class Player
      * @param col       Column of the board to check.
      * @return          Returns true if move is valid.
      */
-    boolean isValidMove(int row, int col) {
+    private boolean isValidMove(int row, int col) {
         if (row < 0 || row >= 3 || col < 0 || col >= 3)
         {
             return false;
@@ -40,7 +44,7 @@ public class Player
      * Checks if the intended move is valid.
      * If not valid, user must provide new row and column integers.
      */
-    void makeMove()
+    public void makeMove()
     {
         int row;
         int col;

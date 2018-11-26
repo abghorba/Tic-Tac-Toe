@@ -1,17 +1,20 @@
+package AI;
+
+import GameBoard.GameBoard;
 import java.util.List;
 
-class Computer extends Player {
+public class MiniMaxComputer extends Player {
 
-    Computer(GameBoard board, String state) {
+    public MiniMaxComputer(GameBoard board, String state) {
         super(board, state);
     }
 
     @Override
     /**
-     * Overrides the makeMove method in the Player class.
+     * Overrides the makeMove method in the AI.Player class.
      * Allows the computer to use the minimax algorithm to determine best move.
      */
-    void makeMove() {
+    public void makeMove() {
         System.out.println("Computer's turn.");
         System.out.println();
         int[] bestMove = minimax(board.moves, true);

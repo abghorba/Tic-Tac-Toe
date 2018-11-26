@@ -1,7 +1,9 @@
+package GameBoard;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class GameBoard
+public class GameBoard
 {
     private final static int ROWS = 3;
     private final static int COLS = 3;
@@ -9,12 +11,12 @@ class GameBoard
 
     private Cell[][] board;
 
-    int moves;
+    public int moves;
 
     /**
      * Sets the game board to have all cells with state " ".
      */
-    GameBoard() {
+    public GameBoard() {
         board = new Cell[ROWS][COLS];
 
         for(int row = 0; row < ROWS; row++)
@@ -33,7 +35,7 @@ class GameBoard
      * @param playerState       State of the player you wish to check has won.
      * @return                  Returns true if there is a win.
      */
-    boolean hasWon(String playerState) {
+    public boolean hasWon(String playerState) {
         String threeInARow = playerState + playerState + playerState;
         String charsInARow = "";
 
@@ -77,7 +79,7 @@ class GameBoard
      * Checks if there is a draw in the game.
      * @return                  True if there is a draw.
      */
-    boolean isADraw() {
+    public boolean isADraw() {
         if (moves == MAX_MOVES && !(hasWon("X") || hasWon("O")))
         {
             return true;
@@ -89,7 +91,7 @@ class GameBoard
      * Checks if the game is over by using hasWon and isADraw methods.
      * @return                  True if game is over.
      */
-    boolean isGameOver() {
+    public boolean isGameOver() {
         if (hasWon("X") || hasWon("O") || isADraw())
         {
             return true;
@@ -103,7 +105,7 @@ class GameBoard
      * @param col               Column of cell in board.
      * @return                  True if the cell contains the string " ".
      */
-    boolean isCellEmpty(int row, int col) {
+    public boolean isCellEmpty(int row, int col) {
         if (board[row][col].getState().equals(" "))
         {
             return true;
@@ -115,7 +117,7 @@ class GameBoard
      * Gives a list of possible moves that can be made.
      * @return                  Returns a list of integer arrays of possible moves in format {row, column}.
      */
-    List<int[]> possibleMoves() {
+    public List<int[]> possibleMoves() {
         List<int[]> availableMoves = new ArrayList<int[]>();
 
         // If there is a winner, there can be no more moves
@@ -143,7 +145,7 @@ class GameBoard
      * @param depth             Number of moves until a win is found.
      * @return                  Returns an integer that stands for the board's evaluation score.
      */
-    int evaluateBoard(String playerState, String opponentState, int depth) {
+    public int evaluateBoard(String playerState, String opponentState, int depth) {
         // Check if either player wins
         if(hasWon(playerState))
             return 100 - depth;
@@ -157,7 +159,7 @@ class GameBoard
      * @param row               Row of cell in board.
      * @param col               Column of cell in board.
      */
-    void emptyCell(int row, int col) {
+    public void emptyCell(int row, int col) {
         if (!isCellEmpty(row, col))
         {
             board[row][col].setState(" ");
@@ -168,9 +170,9 @@ class GameBoard
      * Allows the player to make a valid move on the game board.
      * @param row               Row of cell on board.
      * @param col               Column of cell on board.
-     * @param playerState       Player that wishes to make a move.
+     * @param playerState       AI.Player that wishes to make a move.
      */
-    void playerMove(int row, int col, String playerState) {
+    public void playerMove(int row, int col, String playerState) {
         if (isCellEmpty(row, col))
         {
             board[row][col].setState(playerState);
@@ -181,8 +183,8 @@ class GameBoard
     /**
      * Prints the current game board.
      */
-    void printGameBoard() {
-        /** Prints out the GameBoard as such:
+    public void printGameBoard() {
+        /** Prints out the GameBoard.GameBoard as such:
            |   |
          ----------
            |   |
@@ -201,7 +203,7 @@ class GameBoard
     /**
      * Resets the current game board.
      */
-    void resetGameBoard() {
+    public void resetGameBoard() {
         moves = 0;
         for(int row = 0; row < ROWS; row++)
         {
