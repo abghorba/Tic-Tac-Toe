@@ -19,14 +19,11 @@ public class GameBoard
     public GameBoard() {
         board = new Cell[ROWS][COLS];
 
-        for(int row = 0; row < ROWS; row++)
-        {
-            for (int col = 0; col < COLS; col++)
-            {
+        for(int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
                 board[row][col] = new Cell();
             }
         }
-
         moves = 0;
     }
 
@@ -37,39 +34,33 @@ public class GameBoard
      */
     public boolean hasWon(String playerState) {
         String threeInARow = playerState + playerState + playerState;
-        String charsInARow = "";
+        String charsInARow;
 
         // Check rows if there are three in a row
-        for (int row = 0; row < ROWS; row++)
-        {
+        for (int row = 0; row < ROWS; row++) {
             charsInARow = board[row][0].getState() + board[row][1].getState() + board[row][2].getState();
-            if (threeInARow.equals(charsInARow))
-            {
+            if (threeInARow.equals(charsInARow)) {
                 return true;
             }
         }
 
         // Check columns if there are three in a row
-        for (int col = 0; col < COLS; col++)
-        {
+        for (int col = 0; col < COLS; col++) {
             charsInARow = board[0][col].getState() + board[1][col].getState() + board[2][col].getState();
-            if (threeInARow.equals(charsInARow))
-            {
+            if (threeInARow.equals(charsInARow)) {
                 return true;
             }
         }
 
         // Check main diagonal
         charsInARow = board[0][0].getState() + board[1][1].getState() + board[2][2].getState();
-        if(threeInARow.equals(charsInARow))
-        {
+        if(threeInARow.equals(charsInARow)) {
             return true;
         }
 
         // Check alternate diagonal
         charsInARow = board[0][2].getState() + board[1][1].getState() + board[2][0].getState();
-        if(threeInARow.equals(charsInARow))
-        {
+        if(threeInARow.equals(charsInARow)) {
             return true;
         }
         return false;
@@ -80,11 +71,7 @@ public class GameBoard
      * @return                  True if there is a draw.
      */
     public boolean isADraw() {
-        if (moves == MAX_MOVES && !(hasWon("X") || hasWon("O")))
-        {
-            return true;
-        }
-        return false;
+        return (moves == MAX_MOVES && !(hasWon("X") || hasWon("O")));
     }
 
     /**
@@ -92,11 +79,7 @@ public class GameBoard
      * @return                  True if game is over.
      */
     public boolean isGameOver() {
-        if (hasWon("X") || hasWon("O") || isADraw())
-        {
-            return true;
-        }
-        return false;
+        return (hasWon("X") || hasWon("O") || isADraw());
     }
 
     /**
@@ -106,11 +89,7 @@ public class GameBoard
      * @return                  True if the cell contains the string " ".
      */
     public boolean isCellEmpty(int row, int col) {
-        if (board[row][col].getState().equals(" "))
-        {
-            return true;
-        }
-        return false;
+        return (board[row][col].getState().equals(" "));
     }
 
     /**
@@ -124,17 +103,13 @@ public class GameBoard
         if (hasWon("X") || hasWon("O"))
             return availableMoves;
 
-        for (int row = 0; row < ROWS; row++)
-        {
-            for (int col = 0; col < COLS; col++)
-            {
-                if(isCellEmpty(row, col))
-                {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
+                if(isCellEmpty(row, col)) {
                     availableMoves.add(new int[] {row, col});
                 }
             }
         }
-
         return availableMoves;
     }
 
@@ -160,8 +135,7 @@ public class GameBoard
      * @param col               Column of cell in board.
      */
     public void emptyCell(int row, int col) {
-        if (!isCellEmpty(row, col))
-        {
+        if (!isCellEmpty(row, col)) {
             board[row][col].setState(" ");
         }
     }
@@ -173,11 +147,9 @@ public class GameBoard
      * @param playerState       AI.Player that wishes to make a move.
      */
     public void playerMove(int row, int col, String playerState) {
-        if (isCellEmpty(row, col))
-        {
+        if (isCellEmpty(row, col)) {
             board[row][col].setState(playerState);
         }
-
     }
 
     /**
@@ -205,10 +177,8 @@ public class GameBoard
      */
     public void resetGameBoard() {
         moves = 0;
-        for(int row = 0; row < ROWS; row++)
-        {
-            for (int col = 0; col < COLS; col++)
-            {
+        for(int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
                 board[row][col].setState(" ");
             }
         }

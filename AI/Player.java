@@ -4,9 +4,8 @@ import GameBoard.GameBoard;
 
 import java.util.Scanner;
 
-public class Player
-{
-    protected GameBoard board;
+public class Player {
+    public GameBoard board;
     public String playerState;
     public String opponentState;
 
@@ -29,14 +28,8 @@ public class Player
      */
     private boolean isValidMove(int row, int col) {
         if (row < 0 || row >= 3 || col < 0 || col >= 3)
-        {
             return false;
-        }
-        else if(board.isCellEmpty(row, col))
-        {
-            return true;
-        }
-        return false;
+        return board.isCellEmpty(row, col);
     }
 
     /**
@@ -44,8 +37,7 @@ public class Player
      * Checks if the intended move is valid.
      * If not valid, user must provide new row and column integers.
      */
-    public void makeMove()
-    {
+    public void makeMove() {
         int row;
         int col;
         Scanner in = new Scanner(System.in);
@@ -60,4 +52,11 @@ public class Player
         board.printGameBoard();
     }
 
+    /**
+     * Returns the name of the object class.
+     * @return      Returns "player"
+     */
+    public String getName() {
+        return "Player";
+    }
 }

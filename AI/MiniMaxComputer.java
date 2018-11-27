@@ -11,7 +11,7 @@ public class MiniMaxComputer extends Player {
 
     @Override
     /**
-     * Overrides the makeMove method in the AI.Player class.
+     * Overrides the makeMove method in the Player class.
      * Allows the computer to use the minimax algorithm to determine best move.
      */
     public void makeMove() {
@@ -64,5 +64,14 @@ public class MiniMaxComputer extends Player {
              }
          }
          return new int[] {bestScore, bestRow, bestCol};
+    }
+
+    @Override
+    /**
+     * Overrides the getName method in the Player class.
+     * @return      returns "MiniMaxComputer"
+     */
+    public String getName() {
+        return "MiniMaxComputer";
     }
 }
