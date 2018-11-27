@@ -6,7 +6,7 @@ import GameBoard.GameBoard;
 
 import java.util.Scanner;
 
-public class MinimaxTicTacToe {
+public class MiniMaxTicTacToe {
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
         GameBoard board = new GameBoard();

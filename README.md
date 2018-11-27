@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-<h1> An implementation of Tic-Tac-Toe which is played on the command line. </h1>
+An implementation of Tic-Tac-Toe which is played on the command line.
 
 <h2> How to Play! </h2>
 First, choose the type of game you want to play.
