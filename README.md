@@ -1,6 +1,9 @@
 # Tic-Tac-Toe
 An implementation of Tic-Tac-Toe which is played on the command line.
 
+<h2> Video Demo </h2>
+https://youtu.be/gv5gskxMY5M
+
 <h2> How to Play! </h2>
 First, choose the type of game you want to play.
 If you want to play vs another person, run TicTacToe.java!
